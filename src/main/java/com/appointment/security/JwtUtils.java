@@ -89,10 +89,9 @@ public class JwtUtils {
                 .getBody();
     }
 
-    private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
+   private Key getSigningKey() {
+    return Keys.hmacShaKeyFor(jwtSecret.getBytes());
+}
 
     /**
      * Validate token format (used in filter).
