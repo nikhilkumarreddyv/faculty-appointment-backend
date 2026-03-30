@@ -78,7 +78,7 @@ public class SecurityConfig {
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**", "/health").permitAll()
                 // Student endpoints
                 .requestMatchers(HttpMethod.GET, "/faculty/**").authenticated()
                 .requestMatchers(HttpMethod.GET, "/slots/**").authenticated()
