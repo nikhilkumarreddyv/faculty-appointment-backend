@@ -48,7 +48,7 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- MySQL Connector -->
+        <!-- PostgreSQL Connector -->
         <dependency>
             <groupId>org.postgresql</groupId>
 	   <artifactId>postgresql</artifactId>
