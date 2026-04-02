@@ -78,7 +78,7 @@ public class SecurityConfig {
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints
-                .requestMatchers("/auth/**", "/health").permitAll()
+                .requestMatchers("/auth/**").permitAll()
                 // Student endpoints
                 .requestMatchers(HttpMethod.GET, "/faculty/**").authenticated()
                 .requestMatchers(HttpMethod.GET, "/slots/**").authenticated()
@@ -104,9 +104,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Parse comma-separated allowed origins from properties
+        // Use allowedOriginPatterns to support '*' or specific lists with allowCredentials(true)
         List<String> origins = Arrays.asList(allowedOrigins.split(","));
-        config.setAllowedOrigins(origins);
+        config.setAllowedOriginPatterns(origins);
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
